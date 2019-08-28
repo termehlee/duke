@@ -18,26 +18,37 @@ public class Duke {
         Scanner command = new Scanner(System.in);
         String cmd = command.nextLine();
 
-        ArrayList<String> list = new ArrayList<>();
+        //ArrayList<String> list = new ArrayList<>();
+
+        Task[] tasks = new Task[100];
 
         int noOfTasks = 0;
 
         while (!cmd.equals("bye")) {
-            if(!cmd.equals("list")) {
+            if(!cmd.equals("list") && !cmd.contains("done")) {
                 System.out.println("     ____________________________________________________________");
                 System.out.println("     added: " + cmd);
                 System.out.println("     ____________________________________________________________");
-                list.add(cmd);
-                noOfTasks++;
+                tasks[noOfTasks] = new Task(cmd);
+                noOfTasks += 1;
                 cmd = command.nextLine();
-            } else {
+            } else if (cmd.equals("list")) {
                 int count = 1;
                 System.out.println("     ____________________________________________________________");
-                while(count-1 < list.size()) {
-                    System.out.println("     " + count + ". " + list.get(count-1));
+                System.out.println("     Here are the tasks in your list");
+                while(count-1 < noOfTasks) {
+                    System.out.println("     " + count + "." + tasks[count-1].toString());
                     count++;
                 }
                 System.out.println("     ____________________________________________________________");
+                cmd = command.nextLine();
+            } else {
+                int num = Integer.parseInt(cmd.replaceAll("\\D+", ""));
+                tasks[num - 1].markAsDone();
+                System.out.println("     ---------------------------------------");
+                System.out.println("     Nice! I've marked this task as done:");
+                System.out.println("       " + tasks[num-1].toString());
+                System.out.println("     ---------------------------------------");
                 cmd = command.nextLine();
             }
         }
