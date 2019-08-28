@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
@@ -17,11 +18,28 @@ public class Duke {
         Scanner command = new Scanner(System.in);
         String cmd = command.nextLine();
 
+        ArrayList<String> list = new ArrayList<>();
+
+        int noOfTasks = 0;
+
         while (!cmd.equals("bye")) {
-            System.out.println("     ____________________________________________________________");
-            System.out.println("     " + cmd);
-            System.out.println("     ____________________________________________________________");
-            cmd = command.nextLine();
+            if(!cmd.equals("list")) {
+                System.out.println("     ____________________________________________________________");
+                System.out.println("     added: " + cmd);
+                System.out.println("     ____________________________________________________________");
+                list.add(cmd);
+                noOfTasks++;
+                cmd = command.nextLine();
+            } else {
+                int count = 1;
+                System.out.println("     ____________________________________________________________");
+                while(count-1 < list.size()) {
+                    System.out.println("     " + count + ". " + list.get(count-1));
+                    count++;
+                }
+                System.out.println("     ____________________________________________________________");
+                cmd = command.nextLine();
+            }
         }
         System.out.println("     ---------------------------------------");
         System.out.println("     Bye. Hope to see you again soon!");
