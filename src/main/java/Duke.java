@@ -16,17 +16,14 @@ public class Duke {
         System.out.println("     What can I do for you?");
         System.out.println("     ---------------------------------------");
 
-
-        //DateTimeFormat format = new DateTimeFormat(date);
-        //System.out.println(format.toString());
-
         //Scans first command
         Scanner command = new Scanner(System.in);
         String cmd = command.nextLine();
 
         //Create handler for the 3 different commands
         Handler handle = new Handler();
-        Task[] tasks = new Task[100];
+        //Task[] tasks = new Task[100];
+        ArrayList<Task> tasks = new ArrayList<>();
 
         int noOfTasks = 0;
 
@@ -37,9 +34,9 @@ public class Duke {
         while (!cmd.equals("bye")) {
             try {
                 if (!cmd.equals("list") && !cmd.contains("done")) {
-                    tasks[noOfTasks] = handle.manage(cmd);
+                    tasks.add(noOfTasks, handle.manage(cmd));
                     System.out.println("     ---------------------------------------");
-                    String toPrint = "       " + tasks[noOfTasks].toString();
+                    String toPrint = "       " + tasks.get(noOfTasks).toString();
                     System.out.println("     Got it. I've added this task:");
                     System.out.println(toPrint);
                     noOfTasks++;
@@ -54,17 +51,17 @@ public class Duke {
                     //traverse through the whole list
                     while ((count - 1) < noOfTasks) {
                         System.out.print("     " + count + ".");
-                        System.out.println(tasks[count - 1].toString());
+                        System.out.println(tasks.get(count - 1).toString());
                         count++;
                     }
                     System.out.println("     ---------------------------------------");
                     cmd = command.nextLine();
                 } else {
                     int num = Integer.parseInt(cmd.replaceAll("\\D+", ""));
-                    tasks[num - 1].markAsDone();
+                    tasks.get(num - 1).markAsDone();
                     System.out.println("     ---------------------------------------");
                     System.out.println("     Nice! I've marked this task as done:");
-                    System.out.println("       " + tasks[num - 1].toString());
+                    System.out.println("       " + tasks.get(num - 1).toString());
                     System.out.println("     ---------------------------------------");
                     hd.done(num);
                     cmd = command.nextLine();

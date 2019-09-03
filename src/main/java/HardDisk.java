@@ -45,7 +45,7 @@ public class HardDisk {
     }
 
     //loading the text file when duke starts up
-    int load(Task[] tasks, int noOfTasks) throws IOException {
+    int load(ArrayList<Task> tasks, int noOfTasks) throws IOException {
         try {
             //get path of text file
             File textFile = new File(System.getProperty("user.dir") + File.separator + "data" + File.separator + "duke.txt");
@@ -61,21 +61,21 @@ public class HardDisk {
                 String firstWord = message.substring(0, message.indexOf(" "));
                 if (firstWord.equals("T")) {
                     String[] command = message.split(" \\| ");
-                    tasks[noOfTasks] = new Todo(command[2]);
+                    tasks.add(noOfTasks, new Todo(command[2]));
                     if (command[1].equals("1")) {
-                        tasks[noOfTasks].isDone = true;
+                        tasks.get(noOfTasks).isDone = true;
                     }
                 } else if (firstWord.equals("D")) {
                     String[] command = message.split(" \\| ");
-                    tasks[noOfTasks] = new Deadline(command[2], command[3]);
+                    tasks.add(noOfTasks, new Deadline(command[2], command[3]));
                     if (command[1].equals("1")) {
-                        tasks[noOfTasks].isDone = true;
+                        tasks.get(noOfTasks).isDone = true;
                     }
                 } else if (firstWord.equals("E")) {
                     String[] command = message.split(" \\| ");
-                    tasks[noOfTasks] = new Event(command[2], command[3]);
+                    tasks.add(noOfTasks, new Event(command[2], command[3]));
                     if (command[1].equals("1")) {
-                        tasks[noOfTasks].isDone = true;
+                        tasks.get(noOfTasks).isDone = true;
                     }
                 }
                 noOfTasks++;
