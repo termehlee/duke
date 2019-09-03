@@ -1,7 +1,6 @@
 T | 1 | sleep
 D | 0 | duke | tonight
 D | 0 | help | 22nd of December 2019 1:00PM
-D | 0 | get cough meds | 4th of September 2019 3:00PM
 D | 0 | get cough meds | 22nd of September 2019 3:00PM
 D | 0 | get cough meds | 22nd of December 2019 3:00PM
 D | 0 | get cough meds | 2nd of September 2019 3:00PM
