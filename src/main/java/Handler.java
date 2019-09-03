@@ -19,6 +19,8 @@ public class Handler {
             } else {
                 String description = cmd.substring(cmd.indexOf(" ") + 1, cmd.indexOf("/") - 1);
                 String by = cmd.substring(cmd.indexOf("/") + 4);
+                DateTimeFormat format = new DateTimeFormat(by);
+                by = format.toString();
                 if (firstWord.equals("deadline")) {
                     String type = "D";
                     String by1 = " | " + by;

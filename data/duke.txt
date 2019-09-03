@@ -1,2 +1,5 @@
 T | 1 | sleep
 D | 0 | duke | tonight
+D | 1 | help | 2nd of December 2019 6:00PM
+D | 0 | help | 22nd of December 2019 1:00PM
+E | 0 | party | 13th of June 2020 10:00AM

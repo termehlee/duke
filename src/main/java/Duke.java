@@ -11,10 +11,14 @@ public class Duke {
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
 
-        System.out.println("     ____________________________________________________________");
+        System.out.println("     ---------------------------------------");
         System.out.println("     Hello! I'm Duke");
         System.out.println("     What can I do for you?");
-        System.out.println("     ____________________________________________________________");
+        System.out.println("     ---------------------------------------");
+
+
+        //DateTimeFormat format = new DateTimeFormat(date);
+        //System.out.println(format.toString());
 
         //Scans first command
         Scanner command = new Scanner(System.in);
@@ -53,7 +57,7 @@ public class Duke {
                         System.out.println(tasks[count - 1].toString());
                         count++;
                     }
-                    System.out.println("     ____________________________________________________________");
+                    System.out.println("     ---------------------------------------");
                     cmd = command.nextLine();
                 } else {
                     int num = Integer.parseInt(cmd.replaceAll("\\D+", ""));
