@@ -16,13 +16,19 @@ public class Duke {
         System.out.println("     What can I do for you?");
         System.out.println("     ____________________________________________________________");
 
+        //Scans first command
         Scanner command = new Scanner(System.in);
         String cmd = command.nextLine();
 
+        //Create handler for the 3 different commands
         Handler handle = new Handler();
         Task[] tasks = new Task[100];
 
         int noOfTasks = 0;
+
+        //Load previous list
+        HardDisk hd = new HardDisk();
+        noOfTasks = hd.load(tasks,noOfTasks);
 
         while (!cmd.equals("bye")) {
             try {
@@ -56,6 +62,7 @@ public class Duke {
                     System.out.println("     Nice! I've marked this task as done:");
                     System.out.println("       " + tasks[num - 1].toString());
                     System.out.println("     ---------------------------------------");
+                    hd.done(num);
                     cmd = command.nextLine();
                 }
             }
