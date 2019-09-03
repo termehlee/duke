@@ -44,6 +44,39 @@ public class HardDisk {
         }
     }
 
+    //removing task in text file
+    void delete(int num) {
+        try {
+            ArrayList<String> list = new ArrayList<String>();
+            //get path of text file
+            File textFile = new File(System.getProperty("user.dir") + File.separator + "data" + File.separator + "duke.txt");
+            File parentDir = textFile.getParentFile();
+            //if file does not exist, create parent file
+            if (!parentDir.exists()) {
+                parentDir.mkdirs();
+            }
+            FileReader fr = new FileReader(textFile);
+            BufferedReader br = new BufferedReader(fr);
+            String message;
+            int currentNo = 0;
+            //get current info in the file
+            while ((message = br.readLine()) != null) {
+                if (currentNo != num-1) {
+                    list.add(message);
+                }
+                currentNo++;
+            }
+            FileWriter fw = new FileWriter(textFile);
+            for (String line : list) {
+                fw.append(line).append(String.valueOf('\n'));
+            }
+            fw.flush();
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     //loading the text file when duke starts up
     int load(ArrayList<Task> tasks, int noOfTasks) throws IOException {
         try {

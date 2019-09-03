@@ -33,7 +33,7 @@ public class Duke {
 
         while (!cmd.equals("bye")) {
             try {
-                if (!cmd.equals("list") && !cmd.contains("done")) {
+                if (!cmd.equals("list") && !cmd.contains("done") && !cmd.contains("delete")) {
                     tasks.add(noOfTasks, handle.manage(cmd));
                     System.out.println("     ---------------------------------------");
                     String toPrint = "       " + tasks.get(noOfTasks).toString();
@@ -56,7 +56,7 @@ public class Duke {
                     }
                     System.out.println("     ---------------------------------------");
                     cmd = command.nextLine();
-                } else {
+                } else if (cmd.contains("done")){
                     int num = Integer.parseInt(cmd.replaceAll("\\D+", ""));
                     tasks.get(num - 1).markAsDone();
                     System.out.println("     ---------------------------------------");
@@ -64,6 +64,17 @@ public class Duke {
                     System.out.println("       " + tasks.get(num - 1).toString());
                     System.out.println("     ---------------------------------------");
                     hd.done(num);
+                    cmd = command.nextLine();
+                } else if (cmd.contains("delete")) {
+                    int num = Integer.parseInt(cmd.replaceAll("\\D+", ""));
+                    System.out.println("     ---------------------------------------");
+                    System.out.println("     Noted. I've removed this task:");
+                    System.out.println("       " + tasks.get(num - 1).toString());
+                    noOfTasks--;
+                    System.out.println("     Now you have " + noOfTasks + " tasks in the list.");
+                    System.out.println("     ---------------------------------------");
+                    tasks.remove(num-1);
+                    hd.delete(num);
                     cmd = command.nextLine();
                 }
             }
