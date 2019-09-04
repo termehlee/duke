@@ -22,7 +22,6 @@ public class Duke {
 
         //Create handler for the 3 different commands
         Handler handle = new Handler();
-        //Task[] tasks = new Task[100];
         ArrayList<Task> tasks = new ArrayList<>();
 
         int noOfTasks = 0;
@@ -33,7 +32,7 @@ public class Duke {
 
         while (!cmd.equals("bye")) {
             try {
-                if (!cmd.equals("list") && !cmd.contains("done") && !cmd.contains("delete")) {
+                if (!cmd.equals("list") && !cmd.contains("done") && !cmd.contains("find")) {
                     tasks.add(noOfTasks, handle.manage(cmd));
                     System.out.println("     ---------------------------------------");
                     String toPrint = "       " + tasks.get(noOfTasks).toString();
@@ -75,10 +74,22 @@ public class Duke {
                     System.out.println("     ---------------------------------------");
                     tasks.remove(num-1);
                     hd.delete(num);
+                } else if (cmd.contains("find")){
+                    //get keyword from query
+                    String word = cmd.substring(cmd.indexOf(" ") + 1);
+                    System.out.println("     ---------------------------------------");
+                    System.out.println("     Here are the matching tasks in your list:");
+                    int count = 1;
+                    for(Task itr : tasks) {
+                        if(itr != null && itr.getDescription().contains(word)) {
+                            System.out.println("     " + count + "." + itr.toString());
+                            count++;
+                        }
+                    }
+                    System.out.println("     ---------------------------------------");
                     cmd = command.nextLine();
                 }
-            }
-            catch (NullPointerException | IndexOutOfBoundsException e) {
+            } catch (NullPointerException | IndexOutOfBoundsException e) {
                 if (cmd.equals("todo") || cmd.equals("deadline") || cmd.equals("event")) {
                     System.out.println("     ☹ OOPS!!! The description of a " + cmd + " cannot be empty.");
                 } else {
@@ -88,6 +99,7 @@ public class Duke {
                 cmd = command.nextLine();
             }
         }
+
         System.out.println("     ---------------------------------------");
         System.out.println("     Bye. Hope to see you again soon!");
         System.out.println("     ---------------------------------------");
