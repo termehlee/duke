@@ -35,8 +35,8 @@ public class Duke {
         noOfTasks = hd.load(tasks,noOfTasks);
 
         while (!cmd.equals("bye")) {
-            try {
-                if (!cmd.equals("list") && !cmd.contains("done")) {
+            //try {
+                if (!cmd.equals("list") && !cmd.contains("done") && !cmd.contains("find")) {
                     tasks[noOfTasks] = handle.manage(cmd);
                     System.out.println("     ---------------------------------------");
                     String toPrint = "       " + tasks[noOfTasks].toString();
@@ -59,7 +59,7 @@ public class Duke {
                     }
                     System.out.println("     ---------------------------------------");
                     cmd = command.nextLine();
-                } else {
+                } else if (cmd.equals("done")){
                     int num = Integer.parseInt(cmd.replaceAll("\\D+", ""));
                     tasks[num - 1].markAsDone();
                     System.out.println("     ---------------------------------------");
@@ -68,9 +68,23 @@ public class Duke {
                     System.out.println("     ---------------------------------------");
                     hd.done(num);
                     cmd = command.nextLine();
+                } else if (cmd.contains("find")){
+                    //get keyword from query
+                    String word = cmd.substring(cmd.indexOf(" ") + 1);
+                    System.out.println("     ---------------------------------------");
+                    System.out.println("     Here are the matching tasks in your list:");
+                    int count = 1;
+                    for(Task itr : tasks) {
+                        if(itr != null && itr.getDescription().contains(word)) {
+                            System.out.println("     " + count + "." + itr.toString());
+                            count++;
+                        }
+                    }
+                    System.out.println("     ---------------------------------------");
+                    cmd = command.nextLine();
                 }
             }
-            catch (NullPointerException | IndexOutOfBoundsException e) {
+            /*catch (NullPointerException | IndexOutOfBoundsException e) {
                 if (cmd.equals("todo") || cmd.equals("deadline") || cmd.equals("event")) {
                     System.out.println("     ☹ OOPS!!! The description of a " + cmd + " cannot be empty.");
                 } else {
@@ -79,7 +93,8 @@ public class Duke {
                 System.out.println("     ---------------------------------------");
                 cmd = command.nextLine();
             }
-        }
+        }*/
+
         System.out.println("     ---------------------------------------");
         System.out.println("     Bye. Hope to see you again soon!");
         System.out.println("     ---------------------------------------");
