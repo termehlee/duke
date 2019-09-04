@@ -32,7 +32,7 @@ public class Duke {
 
         while (!cmd.equals("bye")) {
             try {
-                if (!cmd.equals("list") && !cmd.contains("done") && !cmd.contains("find")) {
+                if (!cmd.equals("list") && !cmd.contains("done") && !cmd.contains("find") && !cmd.contains("delete")) {
                     tasks.add(noOfTasks, handle.manage(cmd));
                     System.out.println("     ---------------------------------------");
                     String toPrint = "       " + tasks.get(noOfTasks).toString();
@@ -74,6 +74,7 @@ public class Duke {
                     System.out.println("     ---------------------------------------");
                     tasks.remove(num-1);
                     hd.delete(num);
+                    cmd = command.nextLine();
                 } else if (cmd.contains("find")){
                     //get keyword from query
                     String word = cmd.substring(cmd.indexOf(" ") + 1);
