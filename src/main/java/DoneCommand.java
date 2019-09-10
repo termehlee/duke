@@ -1,11 +1,22 @@
 import java.io.IOException;
 
+/**
+ * Represents a type of command, where tasks are marked as done
+ */
 public class DoneCommand extends Command {
     public DoneCommand(String index) {
         type = Type.DONE;
         input = index;
     }
 
+    /**
+     * Handles the command and marks the specific task as done.
+     *
+     * @param tasks List of tasks
+     * @param ui User interface
+     * @param storage Storing of tasks
+     * @throws DukeException If the number is not an integer (e.g a string)
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
 

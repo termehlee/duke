@@ -1,4 +1,15 @@
+/**
+ * Helps to parse through the command and identify the type of command input by the user
+ */
 public class Parser {
+
+    /**
+     * Parses through the first word to create the corresponding command types
+     *
+     * @param fullCommand
+     * @return the different types of commands after parsing
+     * @throws DukeException If the command is not recognised
+     */
     public static Command parse(String fullCommand) throws DukeException {
 
         String firstWord = null;

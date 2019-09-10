@@ -7,17 +7,21 @@ public class Duke {
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Starts loading the text file
+     *
+     * @param filePath The path where text file is stored
+     * @throws DukeException If path is not found
+     */
     public Duke(String filePath) throws DukeException {
         ui = new Ui();
         storage = new Storage(filePath);
-        try {
-            tasks = new TaskList(storage.load());
-        } catch (IOException e) {
-            ui.showLoadingError();
-            tasks = new TaskList();
-        }
+        tasks = new TaskList(storage.load());
     }
 
+    /**
+     * Executes the entire duke process
+     */
     public void run() {
         ui.showWelcome();
         boolean isExit = false;

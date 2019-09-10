@@ -1,9 +1,18 @@
 import java.io.*;
 import java.util.ArrayList;
 
+/**
+ * Handles the any changes to the text file
+ */
 public class Storage {
     private static ArrayList<Task> info = new ArrayList<>();
 
+    /**
+     * Helps make sense of the text file, and creates the corresponding tasks
+     *
+     * @param filePath The path where text file is stored
+     * @throws DukeException If the file is not found
+     */
     public Storage(String filePath) throws DukeException {
         try {
             FileReader fr = new FileReader(filePath);
@@ -38,7 +47,10 @@ public class Storage {
         }
     }
 
-    //editing task as complete in text file
+    /**
+     * Marking the corresponding task as done by rewriting the entire text file
+     * @param num The specific number of the task to be marked as done
+     */
     void done(int num) {
         try {
             ArrayList<String> list = new ArrayList<String>();
@@ -79,7 +91,15 @@ public class Storage {
         }
     }
 
-    //adding task to text file
+    /**
+     * Helps to add a new task to the text file
+     *
+     * @param type Type of command (i.e. todo/deadline/event)
+     * @param done Represents if the task is done
+     * @param description Description of the task (without the type of command)
+     * @param by Date for task to be done by
+     * @throws IOException If file is not found
+     */
     public static void write(String type, int done, String description, String by) throws IOException {
         File textFile = new File(System.getProperty("user.dir") + File.separator + "data" + File.separator + "duke.txt");
         FileWriter fw = new FileWriter(textFile, true);
@@ -88,7 +108,11 @@ public class Storage {
         fw.close();
     }
 
-    //removing task in text file
+    /**
+     * Helps to delete a specific task in the text file
+     *
+     * @param num The specific number of the task to be deleted
+     */
     void delete(int num) {
         try {
             ArrayList<String> list = new ArrayList<String>();
@@ -121,8 +145,12 @@ public class Storage {
         }
     }
 
-    //loading the text file when duke starts up
-    public ArrayList<Task> load() throws IOException {
+    /**
+     * Loads up the tesxt file when program is first started
+     *
+     * @return info List of tasks stored previously
+     */
+    public ArrayList<Task> load() {
         return info;
     }
 }

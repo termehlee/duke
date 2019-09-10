@@ -1,11 +1,22 @@
 import java.io.IOException;
 
+/**
+ * Represents a type of command, where tasks of specific keywords are found
+ */
 public class FindCommand extends Command {
     public FindCommand(String word) {
         type = Type.DONE;
         input = word;
     }
 
+    /**
+     * Handles the command and find tasks that matches the specific keyword.
+     * Returns error messages if no tasks are found.
+     *
+     * @param tasks List of tasks
+     * @param ui User interface
+     * @param storage Storing of tasks
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         String word = input.substring(input.indexOf(" ") + 1);

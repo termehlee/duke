@@ -4,6 +4,9 @@ import java.time.format.DateTimeFormatterBuilder;
 import java.util.Date;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Helps to convert date and time to a standard format.
+ */
 class DateTimeFormat {
 
     private String date;
@@ -20,7 +23,12 @@ class DateTimeFormat {
         return date + " " + time;
     }
 
-
+    /**
+     * Returns standard format of the date.
+     *
+     * @param date Date of task
+     * @return newDate Updated format of date of task
+     */
     public String dateFormat(String date) {
         //date will be in the form 2/12/2019
         int day = Integer.parseInt(date.substring(0, date.indexOf("/")));
@@ -35,6 +43,12 @@ class DateTimeFormat {
         return newDate;
     }
 
+    /**
+     * Returns standard format of the time.
+     *
+     * @param time Time of task
+     * @return newTime Updated format of time of task
+     */
     public String timeFormat(String time) {
         DateTimeFormatter format = new DateTimeFormatterBuilder().appendPattern("HHmm").toFormatter();
 
@@ -45,6 +59,13 @@ class DateTimeFormat {
 
         return newTime;
     }
+
+    /**
+     * Returns the suffix after the day in the date of the task.
+     *
+     * @param day Day of task
+     * @return suffix Suffix of the day
+     */
 
     private String getDayNumberSuffix(int day) {
         if (day >= 11 && day <= 13) {
